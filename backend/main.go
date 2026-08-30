@@ -2,33 +2,27 @@ package main
 
 import (
 	"fmt"
+	"login-system/database"
+	"login-system/routers"
 	"net/http"
 )
 
-func loginHandler(w http.ResponseWriter, r *http.Request) {
+func main() {
 
-	// Verifica se o método é POST
-	if r.Method != http.MethodPost {
-		fmt.Fprintf(w, "Metodo nao permitido")
+	db, err := database.ConnectDB()
+	if err != nil {
+		fmt.Println("Erro ao conectar ao banco de dados:", err)
+		return
+	}
+	defer db.Close()
+
+	err = database.CreateUserTable(db)
+	if err != nil {
+		fmt.Println("Erro ao criar tabela de usuários:", err)
 		return
 	}
 
-	// Recebe dados do formulário
-	usuario := r.FormValue("usuario")
-	password := r.FormValue("password")
-
-	// Login simples
-	if usuario == "admin" && password == "1234" {
-		fmt.Fprintf(w, "Login correto")
-	} else {
-		fmt.Fprintf(w, "Login incorreto")
-	}
-}
-
-func main() {
-
-	// Rota login
-	http.HandleFunc("/login", loginHandler)
+	routers.SetupRoutes()
 
 	fmt.Println("Servidor rodando em http://localhost:8080")
 
