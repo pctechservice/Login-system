@@ -22,6 +22,26 @@ func main() {
 		return
 	}
 
+	err = database.CreateUser(db, "MARIA", "MARIA123")
+	if err != nil {
+		fmt.Println("Erro ao criar usuário:", err)
+		return
+	}
+
+	err = database.CheckUsersTable(db)
+	if err != nil {
+		fmt.Println("Erro ao verificar tabela de usuários:", err)
+		return
+	}
+
+	user, err := database.GetUser(db, "john_doe")
+	if err != nil {
+		fmt.Println("Erro ao buscar usuário:", err)
+		return
+
+	}
+	fmt.Println("Usuário encontrado:", user.Username)
+
 	routers.SetupRoutes()
 
 	fmt.Println("Servidor rodando em http://localhost:8080")
