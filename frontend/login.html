@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,55 @@
 
     <!-- Conexão com CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
 
-  
+    <div class="login-container">
 
-    <!-- Conexão com JavaScript -->
+        <div class="ilustracao-lado">
+            <img src="img/Login-rafiki.png" alt="Ilustração">
+         </div>   
+
+         <div class="form-lado">
+            <h2>Login</h2>
+            <form>
+         
+
+        <div class="campo">
+            <label for="Username">Username</label>
+            <input type="text" id="Username" name="Username" placeholder="Digite seu username">
+        </div>
+
+        <div class="campo">
+            <label for="Senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+        </div>
+
+        <div class="linha-opcoes">
+            <label for="lembrar">
+                <input type="checkbox" id="lembrar" name="lembrar">
+                Lembrar-me
+            </label>
+            <a href="recuperar-senha.html">Esqueceu a senha?</a>
+        </div>
+    <button type="submit">Entrar</button>
+    </form>
+    <p class="cadastro-link">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+
+    <p class="divisor-texto"> Logar Com</p>
+
+<div class="icones-socais"> 
+    <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.google.com"><i class="fa-brands fa-google"></i></a>
+    <a href="https://www.apple.com"><i class="fab fa-apple"></i></a>
+</div>
+    </div>
+
+     
+     
+    
     <script src="script.js"></script>
 
 </body>
