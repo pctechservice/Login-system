@@ -22,11 +22,11 @@ func main() {
 		return
 	}
 
-	err = database.CreateUser(db, "MARIA", "MARIA123")
-	if err != nil {
-		fmt.Println("Erro ao criar usuário:", err)
-		return
-	}
+	//err = database.CreateUser(db, "MARIA", "MARIA123")
+	//if err != nil {
+	//	fmt.Println("Erro ao criar usuário:", err)
+	//	return
+	//}
 
 	err = database.CheckUsersTable(db)
 	if err != nil {
@@ -42,7 +42,7 @@ func main() {
 	}
 	fmt.Println("Usuário encontrado:", user.Username)
 
-	routers.SetupRoutes()
+	routers.SetupRoutes(db)
 
 	fmt.Println("Servidor rodando em http://localhost:8080")
 
