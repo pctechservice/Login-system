@@ -17,7 +17,7 @@ const response = await fetch("http://localhost:8080/login", {
 });
 const dados = await response.json();
 console.log(dados);
-mensagem.textContent = "Algum texto...";
+mensagem.textContent = dados.message;
 });
 
 
