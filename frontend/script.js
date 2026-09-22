@@ -16,7 +16,7 @@ const response = await fetch("http://localhost:8080/login", {
   body: JSON.stringify({ username: usuario.value, password: senha.value })
 });
 const dados = await response.json();
-console.log(dados);
+cong(sole.lodados);
 mensagem.textContent = "Algum texto...";
 });
 
