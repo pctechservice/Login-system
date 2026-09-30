@@ -3,9 +3,14 @@ package handlers
 import (
 	"database/sql"
 	"encoding/json"
+	"errors"
+	"io"
 	"login-system/database"
 	"login-system/models"
 	"net/http"
+	"strings"
+
+	"modernc.org/sqlite"
 )
 
 func CreateUserHandler(db *sql.DB) http.HandlerFunc {
@@ -26,39 +31,33 @@ func CreateUserHandler(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		// Recebe os dados enviados pelo frontend
 		var input models.User
-
-		err := json.NewDecoder(r.Body).Decode(&input)
-		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-
-			json.NewEncoder(w).Encode(LoginResponse{
-				Success: false,
-				Message: "Dados inválidos",
-			})
-
+		decoder := json.NewDecoder(r.Body)
+		if err := decoder.Decode(&input); err != nil {
+			writeLoginResponse(w, http.StatusBadRequest, false, "Dados inválidos")
+			return
+		}
+		if err := decoder.Decode(new(any)); err != io.EOF {
+			writeLoginResponse(w, http.StatusBadRequest, false, "Dados inválidos")
+			return
+		}
+		if strings.TrimSpace(input.Username) == "" || input.Password == "" {
+			writeLoginResponse(w, http.StatusBadRequest, false, "Username e password são obrigatórios")
 			return
 		}
 
-		// Cria o usuário no banco de dados
-		err = database.CreateUser(db, input.Username, input.Password)
+		err := database.CreateUser(db, input.Username, input.Password)
 
 		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-
-			json.NewEncoder(w).Encode(LoginResponse{
-				Success: false,
-				Message: "Erro ao criar usuário",
-			})
-
+			var sqliteErr *sqlite.Error
+			if errors.As(err, &sqliteErr) && sqliteErr.Code()&0xff == 19 {
+				writeLoginResponse(w, http.StatusConflict, false, "Usuário já existe")
+				return
+			}
+			writeLoginResponse(w, http.StatusInternalServerError, false, "Erro ao criar usuário")
 			return
 		}
 
-		// Usuário criado com sucesso
-		json.NewEncoder(w).Encode(LoginResponse{
-			Success: true,
-			Message: "Usuário criado com sucesso",
-		})
+		writeLoginResponse(w, http.StatusCreated, true, "Usuário criado com sucesso")
 	}
 }
