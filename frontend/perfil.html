@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu perfil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="perfil-page">
+    <main class="perfil-container">
+        <header class="perfil-header">
+            <a class="perfil-brand" href="login.html" aria-label="Login-System início">
+                <span class="perfil-brand-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+                <span>Login<span class="perfil-brand-accent">System</span></span>
+            </a>
+            <button class="perfil-sair" id="logout-button" type="button">
+                <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
+                Sair
+            </button>
+        </header>
+
+        <section class="perfil-boas-vindas" aria-labelledby="perfil-titulo">
+            <div class="perfil-boas-vindas-texto">
+                <p class="perfil-eyebrow">ÁREA DO USUÁRIO</p>
+                <h1 id="perfil-titulo">Bem-vindo(a), <span id="profile-username">Usuário</span>!</h1>
+                <p>Seu acesso foi realizado com sucesso. Este é o seu espaço pessoal.</p>
+            </div>
+            <div class="perfil-avatar" id="profile-avatar" aria-hidden="true">U</div>
+        </section>
+
+        <section class="perfil-cartao" aria-labelledby="perfil-cartao-titulo">
+            <div class="perfil-cartao-icone"><i class="fa-regular fa-circle-user" aria-hidden="true"></i></div>
+            <div>
+                <h2 id="perfil-cartao-titulo">Seu perfil</h2>
+                <p>Você está conectado como <strong id="profile-username-card">Usuário</strong>.</p>
+            </div>
+        </section>
+
+        <footer class="perfil-rodape">Login-System <span aria-hidden="true">·</span> Sua conta, em um só lugar.</footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

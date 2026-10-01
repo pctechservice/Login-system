@@ -106,3 +106,155 @@ input[type="email"]{
     box-sizing: border-box;
 }
 
+/* Perfil */
+.perfil-page{
+    display: block;
+    height: auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 48px 24px;
+    background:
+        radial-gradient(ellipse at 85% 10%, rgba(33, 150, 243, 0.13), transparent 34%),
+        #eaf6ff;
+}
+.perfil-container{
+    width: min(100%, 960px);
+    margin: 0 auto;
+}
+.perfil-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 56px;
+}
+.perfil-brand{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #172b4d;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+.perfil-brand-icon{
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 13px;
+    background: #2196f3;
+    color: white;
+}
+.perfil-brand-accent{ color: #2196f3; }
+.perfil-sair{
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 17px;
+    border: 1px solid #d8e4ef;
+    border-radius: 10px;
+    background: white;
+    color: #35445a;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+.perfil-sair:hover{
+    transform: translateY(-1px);
+    border-color: #2196f3;
+    color: #147ac5;
+}
+.perfil-boas-vindas{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding: 48px;
+    border-radius: 24px;
+    background: linear-gradient(125deg, #167ed0, #2196f3 62%, #54b1ff);
+    box-shadow: 0 18px 40px rgba(22, 126, 208, 0.2);
+    color: white;
+}
+.perfil-eyebrow{
+    margin: 0 0 14px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+.perfil-boas-vindas h1{
+    margin: 0;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+}
+.perfil-boas-vindas-texto > p:last-child{
+    max-width: 520px;
+    margin: 14px 0 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 16px;
+    line-height: 1.6;
+}
+.perfil-avatar{
+    display: grid;
+    flex: 0 0 86px;
+    width: 86px;
+    height: 86px;
+    place-items: center;
+    border: 3px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 36px;
+    font-weight: 700;
+}
+.perfil-cartao{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 26px 30px;
+    border: 1px solid #e7eef5;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 10px 28px rgba(30, 64, 95, 0.06);
+}
+.perfil-cartao-icone{
+    display: grid;
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    border-radius: 15px;
+    background: #eaf6ff;
+    color: #2196f3;
+    font-size: 24px;
+}
+.perfil-cartao h2{
+    margin: 0 0 6px;
+    color: #202c3c;
+    font-size: 18px;
+}
+.perfil-cartao p{
+    margin: 0;
+    color: #718096;
+    line-height: 1.5;
+}
+.perfil-cartao strong{ color: #35445a; }
+.perfil-rodape{
+    margin-top: 34px;
+    color: #8795a5;
+    font-size: 13px;
+    text-align: center;
+}
+.perfil-rodape span{ padding: 0 5px; color: #2196f3; }
+
+@media (max-width: 600px){
+    .perfil-page{ padding: 26px 16px; }
+    .perfil-header{ margin-bottom: 34px; }
+    .perfil-brand{ font-size: 17px; }
+    .perfil-brand-icon{ width: 38px; height: 38px; }
+    .perfil-boas-vindas{ align-items: flex-start; padding: 30px 24px; }
+    .perfil-avatar{ flex-basis: 58px; width: 58px; height: 58px; font-size: 25px; }
+    .perfil-cartao{ padding: 22px 20px; }
+}
+

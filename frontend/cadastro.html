@@ -19,24 +19,20 @@
 
         <div class="form-lado">
             <h2>Cadastro</h2>
-            <form>
+            <form id="cadastro-form">
 
                 <div class="campo">
-                    <label for="Nome">Nome</label>
-                    <input type="text" id="Nome" name="Nome" placeholder="Digite seu nome">
+                    <label for="usernameCadastro">Username</label>
+                    <input type="text" id="usernameCadastro" name="username" placeholder="Digite seu username" autocomplete="username" required>
                 </div>
 
                 <div class="campo">
-                    <label for="EmailCadastro">Email</label>
-                    <input type="email" id="EmailCadastro" name="EmailCadastro" placeholder="Digite seu email">
-                </div>
-
-                <div class="campo">
-                    <label for="SenhaCadastro">Senha</label>
-                    <input type="password" id="SenhaCadastro" name="SenhaCadastro" placeholder="Crie uma senha">
+                    <label for="senhaCadastro">Senha</label>
+                    <input type="password" id="senhaCadastro" name="password" placeholder="Crie uma senha" autocomplete="new-password" required>
                 </div>
 
                 <button type="submit">Cadastrar</button>
+                <p id="mensagemCadastro" aria-live="polite"></p>
             </form>
 
             <p class="cadastro-link">Já tem uma conta? <a href="login.html">Entrar</a></p>
