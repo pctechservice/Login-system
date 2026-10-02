@@ -3,19 +3,17 @@ package handlers
 import (
 	"database/sql"
 	"encoding/json"
+	"errors"
 	"io"
 	"login-system/database"
 	"login-system/models"
 	"net/http"
 	"strings"
+
+	"modernc.org/sqlite"
 )
 
-type LoginResponse struct {
-	Success bool   `json:"success"`
-	Message string `json:"message"`
-}
-
-func LoginHandler(db *sql.DB) http.HandlerFunc {
+func CreateUserHandler(db *sql.DB) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
 
@@ -48,32 +46,18 @@ func LoginHandler(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		// Procura o usuário no banco de dados
-		user, err := database.GetUser(db, input.Username)
-
-		if err == sql.ErrNoRows {
-			writeLoginResponse(w, http.StatusUnauthorized, false, "Login incorreto")
-			return
-		}
+		err := database.CreateUser(db, input.Username, input.Password)
 
 		if err != nil {
-			writeLoginResponse(w, http.StatusInternalServerError, false, "Erro interno do servidor")
+			var sqliteErr *sqlite.Error
+			if errors.As(err, &sqliteErr) && sqliteErr.Code()&0xff == 19 {
+				writeLoginResponse(w, http.StatusConflict, false, "Usuário já existe")
+				return
+			}
+			writeLoginResponse(w, http.StatusInternalServerError, false, "Erro ao criar usuário")
 			return
 		}
 
-		// Compara a senha recebida com a senha do banco
-		if user.Password != input.Password {
-			writeLoginResponse(w, http.StatusUnauthorized, false, "Login incorreto")
-			return
-		}
-
-		// Login correto
-		writeLoginResponse(w, http.StatusOK, true, "Login correto")
+		writeLoginResponse(w, http.StatusCreated, true, "Usuário criado com sucesso")
 	}
-}
-
-func writeLoginResponse(w http.ResponseWriter, status int, success bool, message string) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.WriteHeader(status)
-	_ = json.NewEncoder(w).Encode(LoginResponse{Success: success, Message: message})
 }
