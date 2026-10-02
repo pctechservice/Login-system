@@ -1,7 +1,7 @@
 console.log("Frontend carregado");
 
 const usuario = document.getElementById("Username");
-const senha = document.getElementById("senha");
+const senha = document.getElementById("Senha");
 const form = document.querySelector("form");
 const mensagem = document.getElementById("mensagem");
 
@@ -17,7 +17,7 @@ const response = await fetch("http://localhost:8080/login", {
 });
 const dados = await response.json();
 console.log(dados);
-mensagem.textContent = "Algum texto...";
+mensagem.textContent = dados.message;
 });
 
 
