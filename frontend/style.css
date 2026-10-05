@@ -105,4 +105,49 @@ input[type="email"]{
     width: 100%;
     box-sizing: border-box;
 }
+.senha-box {
+    position: relative;
+    width: 100%;
+}
+
+.senha-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 45px;
+}
+
+#mostrarSenha {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+    z-index: 10;
+}
+
+#mostrarSenha:hover {
+    color: #333;
+}
+.senha-box-cadastro {
+    position: relative;
+    width: 100%;
+}
+
+.senha-box-cadastro input {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 45px;
+}
+
+#mostrarSenhaCadastro {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+    z-index: 10;
+}
+
 

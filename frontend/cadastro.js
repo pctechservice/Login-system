@@ -40,3 +40,17 @@ if (formulario) {
     }
   });
 }
+const senhaCadastro = document.getElementById("SenhaCadastro");
+const mostrarSenhaCadastro = document.getElementById("mostrarSenhaCadastro");
+
+mostrarSenhaCadastro.addEventListener("click", () => {
+    if (senhaCadastro.type === "password") {
+        senhaCadastro.type = "text";
+        mostrarSenhaCadastro.classList.remove("fa-eye");
+        mostrarSenhaCadastro.classList.add("fa-eye-slash");
+    } else {
+        senhaCadastro.type = "password";
+        mostrarSenhaCadastro.classList.remove("fa-eye-slash");
+        mostrarSenhaCadastro.classList.add("fa-eye");
+    }
+});
