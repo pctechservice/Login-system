@@ -1,0 +1,22 @@
+#mensagens {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.usuario {
+  background-color: lightblue;
+  padding: 12px;
+  border-radius: 12px;
+  align-self: flex-end;
+  max-width: 70%;
+}
+
+.ia {
+  background-color: lightgray;
+  padding: 12px;
+  border-radius: 12px;
+  align-self: flex-start;
+  max-width: 70%;
+}
