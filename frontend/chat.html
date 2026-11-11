@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+
+    <!-- Botão para abrir o menu -->
+    <button id="menubtn">
+        <i class="fa-solid fa-bars"></i>   
+    </button>
+    
+    <!-- Overlay para escurecer o fundo -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Menu Lateral (Sidebar) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button id="closeSidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar_nav">
+            <a href="perfil.html"><i class="fa-solid fa-user"></i> Perfil</a>
+            <a href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a href="ajuda.html"><i class="fa-solid fa-circle-info"></i> Ajuda</a>
+           <a href="login.html" class="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user_avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="user-info">
+                <span class="user-name">John Doe</span>
+                <span class="user-email">john.doe@example.com</span>
+            </div>
+        </div>
+    </aside>
+
+  
+
+    <h1>Por onde começar?</h1> 
+    
+    <div id="mensagens"></div>
+
+    <form id="formChat">
+        <input type="text" id="mensagemInput" name="mensagem" placeholder="Digite sua mensagem">
+        <button type="submit" id="enviarBtn">Enviar</button>
+    </form>
+
+    <script src="chat.js"></script>
+</body>
+
+</html>

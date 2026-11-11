@@ -1,208 +1,280 @@
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #e0f2fe, #dbeafe);
-  min-height: 100vh;
+    background: linear-gradient(135deg, #f5f9ff 0%, #e2eeec 50%, #dbe9f6 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-.menu{
-    display: none;
-    position: absolute;
-  top: 100%;
-  left: 20px;
-  background: rgb(238, 239, 245);
-  padding: 10px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border: 1px solid #131212;
-}
-.menu-active{
-    display: block;
-}
-.menu a {
-  color: #000000;
-  text-decoration: none;
-  display: block;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: 0.3s;
-}
-.menu a:hover {
-  background: #1e3a8a;
-  color: black;
-}
-header {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  position: relative;
-}
-.boas-vindas {
-  height: calc(100vh - 40px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.boas-vindas h1 {
-  color: #1e3a8a;
-  font-size: 2.5rem;
-  margin-bottom: 8px;
-  font-weight: 700;
-  
-}
-.btn-criar {
-  background: #1e3a8a;
-  color: white;
-  padding: 14px 36px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: 0.3s;
+/* Botão hambúrguer no topo */
+#menubtn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    color: #1a365d;
+    cursor: pointer;
+    z-index: 10;
 }
 
-.btn-criar:hover {
-  background: #e0f2fe;
-  color: #1e3a8a;
-}
-#menubtn {
-  background: none;
-  border: none;
-}
-#menubtn {
-  background: none;
-  border: none;
-  color: #1e3a8a;
-  font-size: 1.4rem;
-}
-#menubtn {
-  background: none;
-  border: none;
-  color: #1e3a8a;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#menubtn:hover {
-  transform: scale(1.2);
-}
-.subtitulo {
-  color: #475569;
-  font-size: 1.1rem;
-  margin-bottom: 24px;
-}
-.card {
-  background: white;
-  padding: 48px 56px;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(30, 58, 138, 0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border-top: 6px solid #1e3a8a;
-  animation: aparecer 0.8s ease-out;
-}
-.btn-criar {
-  background: #1e3a8a;
-  color: white;
-  padding: 14px 36px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: 0.3s;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.btn-criar:hover {
-  background: #e0f2fe;
-  color: #1e3a8a;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 16px rgba(30, 58, 138, 0.2);
-}
-.btn-criar:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-@keyframes aparecer {
-  from {
+/* Fundo escuro transparente quando o menu abre */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
     opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 99;
 }
+
+.sidebar-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Sidebar estilo ChatGPT (Vai do topo até ao chão) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px; 
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #1b4985 0%, #175491 50%, #157cb8 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.open {
+    left: 0 !important;
+}
+
+.sidebar-header {
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#closeSidebar {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.sidebar_nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    flex-grow: 1;
+}
+
+.sidebar_nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background 0.2s ease;
+}
+
+.sidebar_nav a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar_nav i {
+    width: 20px;
+}
+
+.sidebar-footer {
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.user_avatar {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-email {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+/* Área central das páginas */
+.boas-vindas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 420px;
+    max-width: 90%;
+}
+
 .avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: #1e3a8a;
-  color: white;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #1e3a8a, #22d3ee);
-  border: 4px solid #1e3a8a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 70px;
+    height: 70px;
+    background: #1b4985;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 32px;
 }
+
+.card h1 {
+    color: #1a365d;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.subtitulo {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Estilização do formulário para alinhar verticalmente */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.formulario label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1a365d;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.formulario input:focus {
+    border-color: #1b4985;
+}
+
+.btn-criar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 11px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #1b4985;
+    color: white;
+    cursor: pointer;
+}
+
 .btn-voltar {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 16px;
-  padding: 10px 28px;
-  border: 2px solid #1e3a8a;
-  border-radius: 8px;
-  color: #1e3a8a;
-  text-decoration: none;
-  transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    color: #1b4985;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .btn-voltar:hover {
-  background: #1e3a8a;
-  color: white;
+    text-decoration: underline;
 }
-.formulario {
-  display: flex;
-  flex-direction: column;
-  width: 320px;
-  text-align: left;
+
+/* Correção do botão Entrar no cartão */
+.btn-entrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 11px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #1b4985;
+    color: white;
+    text-decoration: none;
 }
-.formulario label {
-  color: #1e3a8a;
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 6px;
+
+.btn-entrar:hover {
+    background-color: #153a6b;
 }
-.formulario input {
-  padding: 12px 14px;
-  border: 2px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  margin-bottom: 18px;
-  transition: 0.3s;
-}
-.formulario input:focus {
-  outline: none;
-  border-color: #1e3a8a;
-  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.35);
-}
-.formulario .btn-criar {
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  justify-content: center;
-  margin-top: 6px;
+
+/* Ajuste do botão Hambúrguer no canto superior esquerdo */
+#menubtn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #1a365d;
+    cursor: pointer;
+    z-index: 10;
 }

@@ -1,40 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Criar Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="perfil.css">
 </head>
 <body>
-    <main class="boas-vindas">
-    <div class="card">
-        <div class="avatar">
-            <i class="fa-solid fa-user-plus"></i>
+
+    <!-- Botão para abrir o menu hambúrguer -->
+    <button id="menubtn">
+        <i class="fa-solid fa-bars"></i>   
+    </button>
+    
+    <!-- Overlay escuro de fundo -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Menu Lateral (Sidebar) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button id="closeSidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
-        <h1>Criar perfil</h1>
-        <p class="subtitulo">Preencha seus dados para começar</p>
 
-        <form class="formulario">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" placeholder="Seu nome">
+        <nav class="sidebar_nav">
+            <a href="perfil.html"><i class="fa-solid fa-user"></i> Perfil</a>
+            <a href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a href="ajuda.html"><i class="fa-solid fa-circle-info"></i> Ajuda</a>
+            <a href="login.html" class="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+        </nav>
 
-            <label for="email">E-mail</label>
-            <input type="email" id="email" placeholder="seu@email.com">
+        <div class="sidebar-footer">
+            <div class="user_avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="user-info">
+                <span class="user-name">John Doe</span>
+                <span class="user-email">john.doe@example.com</span>
+            </div>
+        </div>
+    </aside>
 
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" placeholder="Sua senha">
+    <!-- Conteúdo Principal -->
+    <main class="boas-vindas">
+        <div class="card">
+            <div class="avatar">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <h1>Criar perfil</h1>
+            <p class="subtitulo">Preencha seus dados para começar</p>
 
-            <button type="submit" class="btn-criar">Criar perfil</button>
-             <a href="perfil.html" class="btn-voltar">
-            <i class="fa-solid fa-arrow-left"></i>
-            Voltar
-        </a>
-    </div>
-        </form>
-    </div>
-</main>
-<script src="criar-perfil.js"></script>
+            <form class="formulario">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" placeholder="Seu nome">
 
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="seu@email.com">
+
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Sua senha">
+
+                <button type="submit" class="btn-criar">Criar perfil</button>
+                
+                <a href="perfil.html" class="btn-voltar">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar
+                </a>
+            </form>
+        </div>
+    </main>
+
+
+    <!-- Scripit da API do Cariar Perfil-->
+    <script src="criar-perfil.js"></script>
 </body>
 </html>
