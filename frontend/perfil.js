@@ -1,33 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleciona os elementos do HTML
+
+    // ===== NOME NA SIDEBAR =====
+    const nomeEl = document.getElementById('nomeUsuario');
+    const emailEl = document.getElementById('emailUsuario');
+    const cardUsuario = document.getElementById('usuarioSidebar');
+
+    const perfilSalvo = localStorage.getItem('perfil');
+
+    if (perfilSalvo) {
+        // JSON.parse transforma o texto de volta em objeto
+        const perfil = JSON.parse(perfilSalvo);
+
+        if (nomeEl) nomeEl.textContent = perfil.nome + ' ' + perfil.sobrenome;
+        if (emailEl) emailEl.textContent = perfil.idade + ' anos';
+    }
+
+    // Clicar no card leva para a página do perfil
+    if (cardUsuario) {
+        cardUsuario.addEventListener('click', () => {
+            window.location.href = 'pagina-perfil.html';
+        });
+    }
+
+    // ===== MENU LATERAL =====
     const menuBtn = document.getElementById('menubtn');
     const closeBtn = document.getElementById('closeSidebar');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
 
-    // Função para abrir o menu
     const openMenu = () => {
         sidebar.classList.add('open');
         overlay.classList.add('active');
     };
 
-    // Função para fechar o menu
     const closeMenu = () => {
         sidebar.classList.remove('open');
         overlay.classList.remove('active');
     };
 
-    // Eventos de clique
-    if (menuBtn) {
-        menuBtn.addEventListener('click', openMenu);
-    }
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeMenu);
-    }
-
-    if (overlay) {
-        overlay.addEventListener('click', closeMenu);
-    }
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (overlay) overlay.addEventListener('click', closeMenu);
 });
-

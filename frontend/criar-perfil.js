@@ -1,8 +1,6 @@
-document  .addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    // ==========================================
-    // 1. LÓGICA DO MENU LATERAL (SIDEBAR)
-    // ==========================================
+    // ===== MENU LATERAL =====
     const menuBtn = document.getElementById('menubtn');
     const closeBtn = document.getElementById('closeSidebar');
     const sidebar = document.getElementById('sidebar');
@@ -19,48 +17,42 @@ document  .addEventListener('DOMContentLoaded', function() {
     if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
     if (overlay) overlay.addEventListener('click', toggleMenu);
 
-    // ==========================================
-    // 2. LÓGICA DA API COM O SERVIDOR GO
-    // ==========================================
+    // ===== NOME NA SIDEBAR =====
+    const nomeEl = document.getElementById('nomeUsuario');
+    const emailEl = document.getElementById('emailUsuario');
+    const perfilSalvo = localStorage.getItem('perfil');
 
+    if (perfilSalvo) {
+        const perfil = JSON.parse(perfilSalvo);
+        if (nomeEl) nomeEl.textContent = perfil.nome + ' ' + perfil.sobrenome;
+        if (emailEl) emailEl.textContent = perfil.idade + ' anos';
+    }
 
-    const form = document.querySelector ('.formulario')
+    // ===== CRIAR PERFIL =====
+    const form = document.getElementById('formPerfil');
 
-    if (form) { 
-        form.addEventListener('submit', async(event) => {
-        
-           event.preventDefault();
+    if (form) {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
 
-           const nome = document.getElementById('nome').value.trim();
-           const email = document.getElementById('email').value.trim();
-           const senha = document.getElementById('senha').value.trim();
+            const nome = document.getElementById('nome').value.trim();
+            const sobrenome = document.getElementById('sobrenome').value.trim();
+            const idade = document.getElementById('idade').value.trim();
+            const cidade = document.getElementById('cidade').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
 
-           if (!nome || !email || !senha) {
-                alert('Por favor, preencha todos os campos.');
+            if (!nome || !sobrenome || !idade) {
+                alert('Preencha pelo menos nome, sobrenome e idade.');
                 return;
-           }
-        
-           try {
-                const response = await fetch('http://localhost:8080/api/criar-perfil', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username: nome, email: email, password: senha })
-                });
-
-                const dados = await response.json();
-
-                if (response.ok) {
-                    alert('Perfil criado com sucesso!');
-                    form.reset();
-                } else {
-                    alert(`Erro ao criar perfil: ${dados.mensagem}`);
-                }
-            } catch (error) {
-                console.error('Erro na requisição:', error);
-                alert('Ocorreu um erro ao criar o perfil. Por favor, tente novamente mais tarde.');
             }
+
+            const perfil = { nome, sobrenome, idade, cidade, telefone };
+
+            // o localStorage só guarda texto, então o objeto vira texto com JSON.stringify
+            localStorage.setItem('perfil', JSON.stringify(perfil));
+
+            alert('Perfil criado com sucesso!');
+            window.location.href = 'perfil.html';
         });
     }
 });

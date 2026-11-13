@@ -22,7 +22,7 @@ if (form && usuario && senha && mensagem) {
 
       if (response.ok) {
         localStorage.setItem("usuario", usuario.value);
-        window.location.href = "perfil.html";
+        window.location.href = "chat.html";
       } else {
         mensagem.textContent = dados.message;
       }

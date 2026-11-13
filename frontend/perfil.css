@@ -278,3 +278,125 @@ body {
     cursor: pointer;
     z-index: 10;
 }
+
+.sidebar-footer{
+    cursor: pointer;
+}
+
+/* ===== PAINEL LATERAL DO PERFIL ===== */
+.perfil-panel {
+    position: fixed;
+    top: 0;
+    left: -360px;
+    width: 320px;
+    height: 100vh;
+    background: white;
+    color: #1a365d;
+    display: flex;
+    flex-direction: column;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 101;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.perfil-panel.open {
+    left: 260px;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 15px;
+    background: #1b4985;
+    color: white;
+}
+
+.panel-header div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.panel-header small {
+    opacity: 0.8;
+    font-size: 12px;
+}
+
+.panel-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+#closePanel {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.panel-menu {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.panel-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: transparent;
+    border: none;
+    border-left: 4px solid transparent;
+    color: #1a365d;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.panel-item i {
+    width: 20px;
+}
+
+.panel-item:hover {
+    background: #eef4fb;
+}
+
+.panel-item.ativo {
+    background: #eef4fb;
+    border-left-color: #1b4985;
+    font-weight: bold;
+}
+
+.panel-conteudo {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.panel-aba {
+    display: none;
+}
+
+.panel-aba.ativa {
+    display: block;
+}
+
+.panel-aba h3 {
+    margin-bottom: 12px;
+}
+
+.panel-aba p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #444;
+}
+   

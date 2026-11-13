@@ -46,9 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Evita fechar o menu se o usuário clicar dentro dele
-  menu.addEventListener("click", (event) => {
-    event.stopPropagation();
-  });
+  if (menu) {
+    menu.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+  }
 });
 // Mapeia os links do menu e suas respectivas seções
 const rotas = {
