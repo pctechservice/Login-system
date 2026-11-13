@@ -106,3 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
     itens[0].classList.add('ativo');
     abas[0].classList.add('ativa');
 });
+
+    // ===== SAIR =====
+    const sair = document.querySelector('.menu-sair');
+    if (sair) {
+        sair.addEventListener('click', () => {
+            localStorage.removeItem('perfilId');
+            localStorage.removeItem('perfil');
+        });
+    }

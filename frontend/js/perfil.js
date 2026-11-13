@@ -1,3 +1,8 @@
+// Se a pessoa já criou o perfil, não precisa ver essa tela de novo
+if (localStorage.getItem('perfilId')) {
+    window.location.href = 'chat.html';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // ===== NOME NA SIDEBAR =====
@@ -13,13 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (nomeEl) nomeEl.textContent = perfil.nome + ' ' + perfil.sobrenome;
         if (emailEl) emailEl.textContent = perfil.idade + ' anos';
-    }
-
-    // Clicar no card leva para a página do perfil
-    if (cardUsuario) {
-        cardUsuario.addEventListener('click', () => {
-            window.location.href = 'pagina-perfil.html';
-        });
     }
 
     // ===== MENU LATERAL =====

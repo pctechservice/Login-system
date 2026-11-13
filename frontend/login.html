@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
-    <!-- Conexão com CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -16,56 +15,52 @@
     <div class="login-container">
 
         <div class="ilustracao-lado">
-            <img src="Login-rafiki.png" alt="Ilustração">
-         </div>   
+            <img src="img/Login-rafiki.png" alt="Ilustração">
+        </div>
 
-         <div class="form-lado">
+        <div class="form-lado">
             <h2>Login</h2>
+
             <form>
-         
+                <div class="campo">
+                    <label for="Username">Username</label>
+                    <input type="text" id="Username" name="Username" placeholder="Digite seu username">
+                </div>
 
-        <div class="campo">
-            <label for="Username">Username</label>
-            <input type="text" id="Username" name="Username" placeholder="Digite seu username">
+                <div class="campo">
+                    <label for="Senha">Senha</label>
+                    <div class="senha-box">
+                        <input type="password" id="Senha" name="Senha" placeholder="Digite sua senha">
+                        <i class="fa-solid fa-eye" id="mostrarSenha"></i>
+                    </div>
+                </div>
+
+                <div class="linha-opcoes">
+                    <label for="lembrar">
+                        <input type="checkbox" id="lembrar" name="lembrar">
+                        Lembrar-me
+                    </label>
+                    <a href="recuperar-senha.html">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit">Entrar</button>
+                <p id="mensagem"></p>
+            </form>
+
+            <p class="cadastro-link">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+
+            <p class="divisor-texto">Logar Com</p>
+
+            <div class="icones-socais">
+                <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.google.com"><i class="fa-brands fa-google"></i></a>
+                <a href="https://www.apple.com"><i class="fab fa-apple"></i></a>
+            </div>
         </div>
 
-       <div class="campo">
-    <label for="Senha">Senha</label>
-
-    <div class="senha-box">
-        <input type="password" id="Senha" name="Senha" placeholder="Digite sua senha">
-        <i class="fa-solid fa-eye" id="mostrarSenha"></i>
-    </div>
-</div>
-
-
-
-        <div class="linha-opcoes">
-            <label for="lembrar">
-                <input type="checkbox" id="lembrar" name="lembrar">
-                Lembrar-me
-            </label>
-            <a href="recuperar-senha.html">Esqueceu a senha?</a>
-        </div>
-        
-    <button type="submit">Entrar</button>
-    <p id="mensagem"></p>
-    </form>
-    <p class="cadastro-link">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-
-    <p class="divisor-texto"> Logar Com</p>
-
-<div class="icones-socais"> 
-    <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
-    <a href="https://www.google.com"><i class="fa-brands fa-google"></i></a>
-    <a href="https://www.apple.com"><i class="fab fa-apple"></i></a>
-</div>
     </div>
 
-     
-     
-    
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>

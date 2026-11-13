@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -14,11 +14,12 @@
     <div class="login-container">
 
         <div class="ilustracao-lado">
-            <img src="login-rafiki.png" alt="Ilustração">
+            <img src="img/Login-rafiki.png" alt="Ilustração">
         </div>
 
         <div class="form-lado">
             <h2>Cadastro</h2>
+
             <form id="formCadastro">
 
                 <div class="campo">
@@ -32,15 +33,13 @@
                 </div>
 
                 <div class="campo">
-    <label for="SenhaCadastro">Senha</label>
+                    <label for="SenhaCadastro">Senha</label>
+                    <div class="senha-box-cadastro">
+                        <input type="password" id="SenhaCadastro" name="SenhaCadastro" placeholder="Crie uma senha">
+                        <i class="fa-solid fa-eye" id="mostrarSenhaCadastro"></i>
+                    </div>
+                </div>
 
-    <div class="senha-box">
-        <input type="password" id="SenhaCadastro" name="SenhaCadastro" placeholder="Crie uma senha">
-        <i class="fa-solid fa-eye" id="mostrarSenhaCadastro"></i>
-    </div>
-</div>
-
-                
                 <p id="mensagem"></p>
 
                 <button type="submit">Cadastrar</button>
@@ -51,7 +50,7 @@
 
     </div>
 
-    <script src="cadastro.js"></script>
+    <script src="js/cadastro.js"></script>
 
 </body>
 </html>

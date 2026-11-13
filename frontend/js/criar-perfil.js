@@ -1,3 +1,8 @@
+// Se a pessoa já criou o perfil, não precisa ver essa tela de novo
+if (localStorage.getItem('perfilId')) {
+    window.location.href = 'chat.html';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // ===== MENU LATERAL =====
@@ -17,22 +22,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
     if (overlay) overlay.addEventListener('click', toggleMenu);
 
-    // ===== NOME NA SIDEBAR =====
-    const nomeEl = document.getElementById('nomeUsuario');
-    const emailEl = document.getElementById('emailUsuario');
-    const perfilSalvo = localStorage.getItem('perfil');
-
-    if (perfilSalvo) {
-        const perfil = JSON.parse(perfilSalvo);
-        if (nomeEl) nomeEl.textContent = perfil.nome + ' ' + perfil.sobrenome;
-        if (emailEl) emailEl.textContent = perfil.idade + ' anos';
-    }
-
     // ===== CRIAR PERFIL =====
     const form = document.getElementById('formPerfil');
 
     if (form) {
-        form.addEventListener('submit', (event) => {
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
 
             const nome = document.getElementById('nome').value.trim();
@@ -46,13 +40,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            const perfil = { nome, sobrenome, idade, cidade, telefone };
+            const perfil = { nome, sobrenome, idade: Number(idade), cidade, telefone };
 
-            // o localStorage só guarda texto, então o objeto vira texto com JSON.stringify
-            localStorage.setItem('perfil', JSON.stringify(perfil));
+            try {
+                const response = await fetch('http://localhost:8080/perfis', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(perfil)
+                });
 
-            alert('Perfil criado com sucesso!');
-            window.location.href = 'perfil.html';
+                const dados = await response.json();
+
+                if (response.status === 201) {
+                    localStorage.setItem('perfilId', dados.id);
+                    localStorage.setItem('perfil', JSON.stringify(perfil));
+                    window.location.href = 'chat.html';
+                } else {
+                    alert(dados.message || 'Erro ao criar perfil.');
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                alert('Não foi possível conectar ao servidor.');
+            }
         });
     }
 });
