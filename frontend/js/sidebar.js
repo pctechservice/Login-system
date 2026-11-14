@@ -59,24 +59,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Cidade:</strong> ${cidade}</p>
                 <p><strong>Telefone:</strong> ${telefone}</p>
             </div>
+
             <div class="panel-aba" id="aba-historico">
-                <h3>Histórico</h3>
-                <p>Nenhuma atividade ainda.</p>
+                <h3>Histórico de Conversas</h3>
+                <div id="listaHistoricoPanel" class="historico-lista"></div>
+                <button id="btnLimparHistorico" class="btn-acao-perigo" style="margin-top: 15px;">
+                    <i class="fa-solid fa-trash"></i> Apagar Histórico
+                </button>
             </div>
+
             <div class="panel-aba" id="aba-pagamentos">
                 <h3>Pagamentos</h3>
                 <p>Nenhuma forma de pagamento cadastrada.</p>
             </div>
+
             <div class="panel-aba" id="aba-privacidade">
-                <h3>Privacidade</h3>
-                <p>Aqui ficam as opções de privacidade da sua conta.</p>
+                <h3>Configurações de Privacidade</h3>
+                
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="toggleSalvarHistorico" checked>
+                        Salvar histórico de conversas localmente
+                    </label>
+                </div>
+
+                <div class="setting-item" style="margin-top: 15px;">
+                    <label>
+                        <input type="checkbox" id="toggleTreinamento">
+                        Permitir uso de dados para melhoria da IA
+                    </label>
+                </div>
+
+                <div style="margin-top: 25px;">
+                    <button id="btnExportarDados" class="btn-acao-secundario">
+                        <i class="fa-solid fa-download"></i> Exportar meus dados (JSON)
+                    </button>
+                </div>
             </div>
         </div>
     `;
     document.body.appendChild(painel);
 
     // ===== 3. ABRIR E FECHAR O PAINEL =====
-    const abrirPainel = () => painel.classList.add('open');
+    const abrirPainel = () => {
+        carregarHistoricoNoPainel(); // atualiza a lista sempre que abrir o painel
+        painel.classList.add('open');
+    };
     const fecharPainel = () => painel.classList.remove('open');
 
     if (card) card.addEventListener('click', abrirPainel);
@@ -103,11 +131,89 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // abre já na primeira aba
-    itens[0].classList.add('ativo');
-    abas[0].classList.add('ativa');
-});
+    if (itens.length > 0) {
+        itens[0].classList.add('ativo');
+        abas[0].classList.add('ativa');
+    }
 
-    // ===== SAIR =====
+    // ===== 5. LÓGICA DA ABA DE HISTÓRICO =====
+    const containerHistorico = painel.querySelector('#listaHistoricoPanel');
+    
+    function carregarHistoricoNoPainel() {
+        const chatsSalvos = JSON.parse(localStorage.getItem('chats_ia')) || [];
+        containerHistorico.innerHTML = '';
+
+        if (chatsSalvos.length === 0) {
+            containerHistorico.innerHTML = '<p class="vazio">Nenhuma conversa encontrada.</p>';
+            return;
+        }
+
+        chatsSalvos.forEach(chat => {
+            const itemChat = document.createElement('div');
+            itemChat.className = 'historico-item-painel';
+            itemChat.innerHTML = `
+                <span><i class="fa-solid fa-message"></i> ${chat.titulo || 'Nova Conversa'}</span>
+                <small>${chat.data || ''}</small>
+            `;
+            
+            itemChat.addEventListener('click', () => {
+                if (typeof carregarConversa === 'function') {
+                    carregarConversa(chat.id);
+                }
+                fecharPainel();
+            });
+
+            containerHistorico.appendChild(itemChat);
+        });
+    }
+
+    carregarHistoricoNoPainel();
+
+    const btnLimparHistorico = painel.querySelector('#btnLimparHistorico');
+    btnLimparHistorico.addEventListener('click', () => {
+        if (confirm('Tem certeza que deseja apagar todo o seu histórico de conversas?')) {
+            localStorage.removeItem('chats_ia');
+            carregarHistoricoNoPainel();
+        }
+    });
+
+    // ===== 6. LÓGICA DA ABA DE PRIVACIDADE =====
+    const toggleHistorico = painel.querySelector('#toggleSalvarHistorico');
+    const toggleTreinamento = painel.querySelector('#toggleTreinamento');
+    const btnExportar = painel.querySelector('#btnExportarDados');
+
+    const configsSalvas = JSON.parse(localStorage.getItem('user_configs')) || { salvarHistorico: true, treinamento: false };
+    toggleHistorico.checked = configsSalvas.salvarHistorico;
+    toggleTreinamento.checked = configsSalvas.treinamento;
+
+    toggleHistorico.addEventListener('change', (e) => {
+        configsSalvas.salvarHistorico = e.target.checked;
+        localStorage.setItem('user_configs', JSON.stringify(configsSalvas));
+    });
+
+    toggleTreinamento.addEventListener('change', (e) => {
+        configsSalvas.treinamento = e.target.checked;
+        localStorage.setItem('user_configs', JSON.stringify(configsSalvas));
+    });
+
+    btnExportar.addEventListener('click', () => {
+        const dadosExportacao = {
+            perfil: JSON.parse(localStorage.getItem('perfil')) || {},
+            historicoConversas: JSON.parse(localStorage.getItem('chats_ia')) || [],
+            configuracoes: configsSalvas,
+            dataExportacao: new Date().toISOString()
+        };
+
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dadosExportacao, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+       downloadAnchor.setAttribute("download", `meus_dados_ia_${Date.now()}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+    });
+
+    // ===== 7. SAIR (LOGOUT) =====
     const sair = document.querySelector('.menu-sair');
     if (sair) {
         sair.addEventListener('click', () => {
@@ -115,3 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('perfil');
         });
     }
+
+    
+});

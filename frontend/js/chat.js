@@ -1,5 +1,32 @@
 console.log("Chat carregado");
 
+let chatAtualId = "chat_" + Date.now();
+
+function salvarMensagemNoHistorico(role, texto) {
+    // 1. Verifica se o usuário desativou o salvamento na aba Privacidade
+    const configs = JSON.parse(localStorage.getItem('user_configs')) || { salvarHistorico: true };
+    if (!configs.salvarHistorico) return;
+
+    // 2. Busca os chats existentes ou cria uma lista vazia
+    let chats = JSON.parse(localStorage.getItem('chats_ia')) || [];
+    let chatExistente = chats.find(c => c.id === chatAtualId);
+
+    if (!chatExistente) {
+        // Se for a primeira mensagem desse chat, cria um novo registro
+        chatExistente = {
+            id: chatAtualId,
+            titulo: texto.substring(0, 30) + (texto.length > 30 ? '...' : ''), // Usa o início da 1ª msg como título
+            data: new Date().toLocaleDateString('pt-BR'),
+            mensagens: []
+        };
+        chats.unshift(chatExistente); 
+    }
+
+    // 3. Adiciona a mensagem e salva de volta no localStorage
+    chatExistente.mensagens.push({ role: role, content: texto });
+    localStorage.setItem('chats_ia', JSON.stringify(chats));
+}
+
 const form = document.getElementById('formChat');
 const input = document.getElementById('mensagemInput');
 const div = document.getElementById('mensagens');
@@ -12,10 +39,12 @@ if (form) {
             return;
         }
 
+
         const balao = document.createElement("div");
         balao.textContent = texto;
         balao.classList.add('usuario');
         div.appendChild(balao);
+         
 
         const ia = document.createElement("div");
         ia.textContent = "Resposta do servidor: " + texto;
@@ -23,8 +52,31 @@ if (form) {
         div.appendChild(ia);
 
         input.value = '';
+
+        salvarMensagemNoHistorico('user', texto);
+        salvarMensagemNoHistorico('assistant', ia.textContent);
+
     });
 }
+
+function carregarConversa(id) {
+            const chatsSalvos = JSON.parse(localStorage.getItem('chats_ia')) || [];
+            const chatSelecionado = chatsSalvos.find(c => c.id === id);
+
+            div.innerHTML = '';
+
+            if (chatSelecionado) {
+                chatAtualId = id;
+                chatSelecionado.mensagens.forEach(msg => {
+                    const balao = document.createElement("div");
+                    balao.textContent = msg.content;
+                    balao.classList.add(msg.role === 'user' ? 'usuario' : 'ia');
+                    div.appendChild(balao);
+                    
+                });
+            }
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
