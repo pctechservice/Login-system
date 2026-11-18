@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f5f9ff;
+    color: #1a365d;
+    font-family: Arial, sans-serif;
+}
+
+.config {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.config-voltar {
+    color: #1b4985;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.config-voltar:hover {
+    text-decoration: underline;
+}
+
+.config h1 {
+    margin: 20px 0 6px;
+    font-size: 32px;
+}
+
+.config-sub {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.config section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.config h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.config-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+.config h2 + .config-linha {
+    border-top: none;
+}
+
+.config-opcoes {
+    display: flex;
+    gap: 16px;
+}
+
+.config-opcoes label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.config-btn {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2196f3;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.config-btn:hover {
+    background: #1b84d9;
+}
+
+.config-perigo {
+    background: #d9363e;
+}
+
+.config-perigo:hover {
+    background: #b92c33;
+}
+
+.config-aviso {
+    min-height: 20px;
+    color: #2e7d32;
+    font-size: 14px;
+}
+
+.config {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 70px 20px 60px;
+}

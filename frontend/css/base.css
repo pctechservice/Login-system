@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   height: 100vh;
   box-sizing: border-box;
-  display: flex;
+
 }
 h1 {
   color: #b0b0b0;

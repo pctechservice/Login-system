@@ -13,12 +13,14 @@
   border-radius: 12px;
   align-self: flex-end;
   max-width: 70%;
+  color: var(--cor-titulo);
 }
 
 .ia {
-  background-color: lightgray;
+  background-color: lightblue;
   padding: 12px;
   border-radius: 12px;
   align-self: flex-start;
   max-width: 70%;
+  color: var(--cor-titulo);
 }

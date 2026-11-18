@@ -9,6 +9,7 @@ body {
     background: linear-gradient(135deg, #f5f9ff 0%, #e2eeec 50%, #dbe9f6 100%);
     min-height: 100vh;
     overflow-x: hidden;
+    display: fixed;
 }
 
 /* Botão hambúrguer no topo */
@@ -161,7 +162,7 @@ body {
 .avatar {
     width: 70px;
     height: 70px;
-    background: #1b4985;
+    background: #2196f3;
     color: white;
     border-radius: 50%;
     display: flex;
@@ -172,7 +173,7 @@ body {
 }
 
 .card h1 {
-    color: #1a365d;
+    color: #2196f3;
     font-size: 22px;
     margin-bottom: 8px;
 }
@@ -194,7 +195,7 @@ body {
 .formulario label {
     font-size: 13px;
     font-weight: bold;
-    color: #1a365d;
+    color: #2196f3;
 }
 
 .formulario input {
@@ -208,7 +209,7 @@ body {
 }
 
 .formulario input:focus {
-    border-color: #1b4985;
+    border-color: #2196f3;
 }
 
 .btn-criar {
@@ -223,7 +224,7 @@ body {
     border: none;
     font-weight: bold;
     font-size: 14px;
-    background-color: #1b4985;
+    background-color: #2196f3;
     color: white;
     cursor: pointer;
 }
@@ -234,7 +235,7 @@ body {
     justify-content: center;
     gap: 6px;
     margin-top: 10px;
-    color: #1b4985;
+    color: #2196f3;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -257,13 +258,13 @@ body {
     border: none;
     font-weight: bold;
     font-size: 14px;
-    background-color: #1b4985;
+    background-color: #2196f3;
     color: white;
     text-decoration: none;
 }
 
 .btn-entrar:hover {
-    background-color: #153a6b;
+    background-color: #2196f3;
 }
 
 /* Ajuste do botão Hambúrguer no canto superior esquerdo */
@@ -274,7 +275,7 @@ body {
     background: transparent;
     border: none;
     font-size: 24px;
-    color: #1a365d;
+    color: #2196f3;
     cursor: pointer;
     z-index: 10;
 }
@@ -291,7 +292,7 @@ body {
     width: 320px;
     height: 100vh;
     background: white;
-    color: #1a365d;
+    color: #2196f3;
     display: flex;
     flex-direction: column;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -398,5 +399,64 @@ body {
     font-size: 14px;
     margin-bottom: 8px;
     color: #444;
+}
+
+.main-content {
+    min-height: 100vh;
+    position: relative;
+}
+
+#formChat {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(760px, calc(100% - 40px));
+    display: flex;
+    align-items: center;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 30px;
+    padding: 8px 15px;
+    z-index: 10;
+}
+
+#mensagemInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 12px;
+    font-size: 14px;
+}
+
+#mensagemInput::placeholder {
+    color: #94a3b8;
+}
+
+#enviarBtn {
+    background: transparent;
+    border: none;
+    color: #60a5fa;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.main-content h1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    text-align: center;
+
+    color: #7188b5;
+    font-size: 38px;
+
+    pointer-events: none;
+    z-index: 1;
 }
    

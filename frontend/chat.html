@@ -9,18 +9,22 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/chat.css">
     <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/continuar.css">
+    <link rel="stylesheet" href="css/paines.css">
+    <link rel="stylesheet" href="css/tema-escuro.css">
+    <link rel="stylesheet" href="css/configuracoes.css">
 </head>
 <body>
 
-    <!-- Botão para abrir o menu -->
+    <!-- Botão para abrir o menu em dispositivos móveis -->
     <button id="menubtn">
         <i class="fa-solid fa-bars"></i>
     </button>
 
-    <!-- Overlay para escurecer o fundo -->
+    <!-- Overlay para escurecer o fundo quando o menu abrir no mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Menu Lateral (Sidebar) -->
+    <!-- Menu Lateral (Sidebar) Fixo -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <button id="closeSidebar">
@@ -29,8 +33,10 @@
         </div>
 
         <nav class="sidebar_nav">
-            <a href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
-            <a href="ajuda.html"><i class="fa-solid fa-circle-info"></i> Ajuda</a>
+            <a href="#" id="linkContinuar"><i class="fa-solid fa-magnifying-glass"></i> Continuar </a>
+            <a href="#" id="linkConfig"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a href="#" id="linkAjuda"><i class="fa-solid fa-circle-info"></i> Ajuda</a>
+            <a href="#" id="temaBtn"><i class="fa-solid fa-moon"></i> <span id="temaTexto">Modo escuro</span></a>
             <a href="login.html" class="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
         </nav>
 
@@ -45,16 +51,22 @@
         </div>
     </aside>
 
-    <h1>Por onde começar?</h1>
+    <!-- Conteúdo principal da direita (envolvido na div .main-content) -->
+    <div class="main-content">
+        <h1>Por onde começar?</h1>
 
-    <div id="mensagens"></div>
+        <div id="mensagens"></div>
 
-    <form id="formChat">
-        <input type="text" id="mensagemInput" name="mensagem" placeholder="Digite sua mensagem">
-        <button type="submit" id="enviarBtn">Enviar</button>
-    </form>
+        <form id="formChat">
+            <input type="text" id="mensagemInput" name="mensagem" placeholder="Digite sua mensagem">
+            <button type="submit" id="enviarBtn">Enviar</button>
+        </form>
+    </div>
 
     <script src="js/chat.js"></script>
     <script src="js/sidebar.js"></script>
+    <script src="js/continuar.js"></script>
+    <script src="js/paines.js"></script>
+    <script src="js/tema.js"></script>
 </body>
 </html>

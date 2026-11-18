@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/configuracoes.css">
+    <link rel="stylesheet" href="css/tema-escuro.css">
+</head>
+<body>
+
+    <!-- Botão para abrir o menu -->
+    <button id="menubtn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Overlay para escurecer o fundo -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Menu Lateral (Sidebar) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button id="closeSidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar_nav">
+            <a href="#" id="linkPerfil"><i class="fa-solid fa-user"></i> Perfil</a>
+            <a href="chat.html"><i class="fa-solid fa-magnifying-glass"></i> Pesquisar</a>
+            <a href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a href="ajuda.html"><i class="fa-solid fa-circle-info"></i> Ajuda</a>
+            <a href="login.html" class="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+        </nav>
+
+        <div class="sidebar-footer" id="usuarioSidebar">
+            <div class="user_avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="user-info">
+                <span class="user-name" id="nomeUsuario">John Doe</span>
+                <span class="user-email" id="emailUsuario">john.doe@example.com</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="config">
+        <a href="chat.html" class="config-voltar">
+            <i class="fa-solid fa-arrow-left"></i> Voltar ao chat
+        </a>
+
+        <h1>Configurações</h1>
+        <p class="config-sub">Ajuste o chat do seu jeito.</p>
+
+        <section>
+            <h2>Aparência</h2>
+
+            <div class="config-linha">
+                <span>Tema</span>
+                <div class="config-opcoes">
+                    <label><input type="radio" name="tema" value="claro"> Claro</label>
+                    <label><input type="radio" name="tema" value="escuro"> Escuro</label>
+                </div>
+            </div>
+
+            <div class="config-linha">
+                <span>Tamanho do texto no chat</span>
+                <div class="config-opcoes">
+                    <label><input type="radio" name="fonte" value="pequena"> Pequeno</label>
+                    <label><input type="radio" name="fonte" value="media"> Médio</label>
+                    <label><input type="radio" name="fonte" value="grande"> Grande</label>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Conversas</h2>
+
+            <div class="config-linha">
+                <span>Baixar meus dados (perfil e conversas)</span>
+                <button id="exportarBtn" class="config-btn">
+                    <i class="fa-solid fa-download"></i> Exportar JSON
+                </button>
+            </div>
+
+            <div class="config-linha">
+                <span>Apagar todas as conversas salvas</span>
+                <button id="limparBtn" class="config-btn config-perigo">
+                    <i class="fa-solid fa-trash"></i> Apagar conversas
+                </button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Conta</h2>
+
+            <div class="config-linha">
+                <span>Apagar meu perfil e todos os dados</span>
+                <button id="apagarPerfilBtn" class="config-btn config-perigo">
+                    <i class="fa-solid fa-user-xmark"></i> Apagar perfil
+                </button>
+            </div>
+        </section>
+
+        <p id="aviso" class="config-aviso"></p>
+    </main>
+
+    <script src="js/menu.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/tema.js"></script>
+    <script src="js/configuracoes.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>
