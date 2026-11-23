@@ -1,26 +1,37 @@
-#mensagens {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-  
-
+/* ===== CAMPO DE MENSAGEM (modo claro) ===== */
+#formChat {
+    background: white;
+    border-color: #e0e6f0;
 }
 
-.usuario {
-  background-color: lightblue;
-  padding: 12px;
-  border-radius: 12px;
-  align-self: flex-end;
-  max-width: 70%;
-  color: var(--cor-titulo);
+#mensagemInput {
+    background: transparent;
+    color: #1a365d;
 }
 
-.ia {
-  background-color: lightblue;
-  padding: 12px;
-  border-radius: 12px;
-  align-self: flex-start;
-  max-width: 70%;
-  color: var(--cor-titulo);
+#enviarBtn {
+    #enviarBtn {
+    background-color: white;
+    color: rgb(113, 136, 181);
 }
+}
+
+#enviarBtn:hover {
+   #enviarBtn:hover {
+    background-color: #eef2fa;
+}
+}
+
+/* ===== TAMANHO DO TEXTO NO CHAT ===== */
+body.fonte-pequena #mensagens .usuario,
+body.fonte-pequena #mensagens .ia,
+body.fonte-pequena #mensagemInput {
+    font-size: 13px;
+}
+
+body.fonte-grande #mensagens .usuario,
+body.fonte-grande #mensagens .ia,
+body.fonte-grande #mensagemInput {
+    font-size: 18px;
+}
+

@@ -1,3 +1,4 @@
+/* ===== BASE ===== */
 body.escuro {
     background: #121826;
     color: #e5e9f0;
@@ -7,7 +8,11 @@ body.escuro h1 {
     color: #6b7a99;
 }
 
-/* campo de mensagem */
+body.escuro #menubtn {
+    color: #e5e9f0;
+}
+
+/* ===== CAMPO DE MENSAGEM ===== */
 body.escuro #formChat {
     background: #1e2638;
     border-color: #2c3650;
@@ -23,22 +28,43 @@ body.escuro #mensagemInput::placeholder {
     color: #7d8aa8;
 }
 
-/* balões do chat */
+body.escuro #mensagemInput:-webkit-autofill,
+body.escuro #mensagemInput:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #1e2638 inset;
+    -webkit-text-fill-color: #e5e9f0;
+    caret-color: #e5e9f0;
+}
+
+body.escuro #enviarBtn {
+    background-color: #1e2638;
+    color: #6b7a99;
+}
+
+/* ===== BALÕES DO CHAT ===== */
 body.escuro .usuario,
 body.escuro .ia {
     background: #1e2638;
     color: #e5e9f0;
 }
 
-/* botão do menu hambúrguer */
-body.escuro #menubtn {
-    color: #e5e9f0;
+/* ===== SIDEBAR ===== */
+body.escuro .sidebar {
+    background: #0d1220 !important;
+    background-image: none !important;
 }
 
-/* painel do perfil */
+/* ===== PAINEL DO PERFIL ===== */
 body.escuro .perfil-panel {
     background: #1a2133;
     color: #e5e9f0;
+}
+
+body.escuro .panel-header {
+    background: #0d1220 !important;
+}
+
+body.escuro .panel-menu {
+    border-bottom-color: #2c3650;
 }
 
 body.escuro .panel-item {
@@ -50,38 +76,12 @@ body.escuro .panel-item.ativo {
     background: #243050;
 }
 
-body.escuro .panel-menu {
-    border-bottom-color: #2c3650;
+body.escuro .panel-item.ativo {
+    border-left-color: #6b7a99;
 }
 
 body.escuro .panel-aba p {
     color: #b8c2d9;
-}
-
-body.escuro button[type="submit"] {
-    background-color:#1e2638;
-    color: #6b7a99;
-}
-
-body.escuro #mensagemInput:-webkit-autofill,
-body.escuro #mensagemInput:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px #1e2638 inset;
-    -webkit-text-fill-color: #e5e9f0;
-    caret-color: #e5e9f0;
-}
-
-body.escuro .sidebar {
-    background: #0d1220 !important;
-    background-image: none !important;
-      background: #0d1220 !important;
-}
-
-body.escuro .panel-header {
-    background: #0d1220 !important;
-}
-
-body.escuro .panel-item.ativo {
-    border-left-color: #6b7a99;
 }
 
 body.escuro .panel-aba button {
@@ -94,6 +94,7 @@ body.escuro .panel-aba button:hover {
     background: #2c3a5e;
 }
 
+/* ===== PAINÉIS: PESQUISAR, AJUDA E CONFIGURAÇÕES ===== */
 body.escuro .continuar-panel {
     background: #1a2133;
     color: #e5e9f0;
@@ -101,6 +102,11 @@ body.escuro .continuar-panel {
 
 body.escuro .continuar-header {
     background: #0d1220;
+}
+
+body.escuro .continuar-novo {
+    background: #243050;
+    color: #e5e9f0;
 }
 
 body.escuro #buscaChat {
@@ -122,72 +128,30 @@ body.escuro .continuar-vazio {
     color: #8b98b8;
 }
 
-body.escuro .continuar-novo {
+body.escuro .painel-corpo h3 {
+    color: #e5e9f0;
+}
+
+body.escuro .painel-corpo p,
+body.escuro .painel-corpo ol {
+    color: #b8c2d9;
+}
+
+body.escuro .painel-corpo details,
+body.escuro .painel-linha {
+    border-top-color: #2c3650;
+}
+
+body.escuro .painel-corpo a {
+    color: #8bb4ff;
+}
+
+body.escuro .painel-btn:not(.painel-perigo) {
     background: #243050;
+    border: 1px solid #2c3650;
     color: #e5e9f0;
 }
 
-/* ===== AJUDA ===== */
-
-body.escuro .ajuda section {
-    background: #1a2133;
-    box-shadow: none;
-}
-
-body.escuro .ajuda h1,
-body.escuro .ajuda h2 {
-    color: #e5e9f0;
-}
-
-body.escuro .ajuda-sub,
-body.escuro details p {
-    color: #b8c2d9;
-}
-
-body.escuro details {
-    border-top-color: #2c3650;
-}
-
-body.escuro .ajuda-voltar {
-    color: #8bb4ff;
-}
-
-/* ===== PÁGINA DE CONFIGURAÇÕES ===== */
-body.escuro .config section {
-    background: #1a2133;
-    box-shadow: none;
-}
-
-body.escuro .config h1,
-body.escuro .config h2 {
-    color: #e5e9f0;
-}
-
-body.escuro .config-sub {
-    color: #b8c2d9;
-}
-
-body.escuro .config-linha {
-    border-top-color: #2c3650;
-}
-
-body.escuro .config-voltar {
-    color: #8bb4ff;
-}
-
-body.escuro .config-aviso {
+body.escuro .painel-aviso {
     color: #7ed487;
-}
-
-/* ===== TAMANHO DO TEXTO NO CHAT ===== */
-body.fonte-pequena #mensagens .usuario,
-body.fonte-pequena #mensagens .ia,
-body.fonte-pequena #mensagemInput {
-    font-size: 13px;
-}
-
-body.fonte-grande #mensagens .usuario,
-body.fonte-grande #mensagens .ia,
-body.fonte-grande #mensagemInput {
-    font-size: 18px;
 }
