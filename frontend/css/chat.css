@@ -35,3 +35,34 @@ body.fonte-grande #mensagemInput {
     font-size: 18px;
 }
 
+/* ===== ALINHAMENTO DAS MENSAGENS ===== */
+#mensagens {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaço vertical entre uma mensagem e outra */
+}
+
+/* Suas mensagens na direita */
+#mensagens .usuario {
+    align-self: flex-end;
+    max-width: 75%; /* Evita que a mensagem ocupe a tela inteira */
+    border-radius: 0;
+    padding: 4px 0;
+    box-shadow: none;
+    
+    background-color: #c3dbf8;
+    color: rgb(0, 0, 0);
+    padding: 10px 14px;
+    border-radius: 16px 16px 16px 16px;
+    
+
+}
+
+/* Mensagens do chat/IA na esquerda */
+#mensagens .ia {
+    align-self: flex-start;
+    max-width: 75%;
+    border-radius: 0;
+    padding: 4px 0;
+    box-shadow: none;
+}

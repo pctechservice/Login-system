@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>chat</title>
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="stylesheet" href="css/base.css">
@@ -11,29 +12,17 @@
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/continuar.css">
     <link rel="stylesheet" href="css/paines.css">
+    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/tema-escuro.css">
-    <link rel="stylesheet" href="css/configuracoes.css">
+
+    <script src="js/layout.js"></script>
 </head>
 <body>
 
-    <!-- Botão para abrir o menu em dispositivos móveis -->
-    <button id="menubtn">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-
-    <!-- Overlay para escurecer o fundo quando o menu abrir no mobile -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- Menu Lateral (Sidebar) Fixo -->
+    <!-- Menu lateral fixo -->
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <button id="closeSidebar">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
         <nav class="sidebar_nav">
-            <a href="#" id="linkContinuar"><i class="fa-solid fa-magnifying-glass"></i> Continuar </a>
+            <a href="#" id="linkContinuar"><i class="fa-solid fa-magnifying-glass"></i> Pesquisar</a>
             <a href="#" id="linkConfig"><i class="fa-solid fa-gear"></i> Configurações</a>
             <a href="#" id="linkAjuda"><i class="fa-solid fa-circle-info"></i> Ajuda</a>
             <a href="#" id="temaBtn"><i class="fa-solid fa-moon"></i> <span id="temaTexto">Modo escuro</span></a>
@@ -51,7 +40,10 @@
         </div>
     </aside>
 
-    <!-- Conteúdo principal da direita (envolvido na div .main-content) -->
+    <!-- Barrinha para arrastar e ajustar a sidebar -->
+    <div class="sidebar-resizer" id="sidebarResizer" title="Arraste para ajustar. Clique duas vezes para recolher ou abrir."></div>
+
+    <!-- Conteúdo principal -->
     <div class="main-content">
         <h1>Por onde começar?</h1>
 
@@ -67,6 +59,7 @@
     <script src="js/sidebar.js"></script>
     <script src="js/continuar.js"></script>
     <script src="js/paines.js"></script>
+    <script src="js/fechar-paineis.js"></script>
     <script src="js/tema.js"></script>
 </body>
 </html>

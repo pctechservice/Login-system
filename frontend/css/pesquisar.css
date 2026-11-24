@@ -1,0 +1,101 @@
+.pesquisar-panel {
+    position: fixed;
+    top: 0;
+    left: -360px;
+    width: 320px;
+    height: 100vh;
+    background: white;
+    color: #1a365d;
+    display: flex;
+    flex-direction: column;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 101;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.pesquisar-panel.open {
+    left: 260px;
+}
+
+.pesquisar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 15px;
+    background: #1b4985;
+    color: white;
+}
+
+#closeContinuar {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    width: auto;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.pesquisar-novo {
+    margin: 12px 15px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #2196f3;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#buscaChat {
+    margin: 12px 15px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.pesquisar-lista {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px 15px;
+    overflow-y: auto;
+}
+
+.pesquisar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #1a365d;
+    text-align: left;
+    cursor: pointer;
+}
+
+.pesquisar-item:hover {
+    background: #eef4fb;
+}
+
+.pesquisar-titulo {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pesquisar-trecho {
+    font-size: 12px;
+    color: #666;
+}
+
+.pesquisar-vazio {
+    padding: 15px;
+    font-size: 14px;
+    color: #666;
+}
+

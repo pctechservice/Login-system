@@ -1,0 +1,194 @@
+:root {
+    --sidebar-w: 260px;
+    --anim: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* largura dos painéis (Pesquisar, Configurações, Ajuda, Perfil) */
+    --painel-largura: min(320px, max(240px, calc(100vw - var(--sidebar-w))));
+}
+
+body {
+    /* 0 com os painéis fechados; a largura do painel quando um está aberto */
+    --painel-w: 0px;
+    /* o espaço que a sidebar e o painel ocupam à esquerda */
+    --chat-esq: calc(var(--sidebar-w) + var(--painel-w));
+}
+
+body.painel-aberto {
+    --painel-w: var(--painel-largura);
+}
+
+/* telas estreitas: não há espaço para empurrar, o painel abre por cima */
+@media (max-width: 900px) {
+    body.painel-aberto {
+        --painel-w: 0px;
+    }
+}
+
+/* a página não rola para os lados */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* o conteúdo do chat é empurrado pela sidebar e pelo painel */
+body {
+    padding-left: var(--chat-esq);
+    transition: padding-left var(--anim);
+}
+
+/* sem hambúrguer, overlay nem X */
+body #menubtn,
+body .sidebar-overlay,
+body .sidebar-header,
+body #closeSidebar {
+    display: none !important;
+}
+
+/* ===== SIDEBAR FIXA ===== */
+body .sidebar {
+    left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    height: 100dvh;
+    padding-top: 12px;
+    overflow: hidden;
+    transition: width var(--anim);
+    z-index: 100;
+}
+
+/* o conteúdo não amassa quando a sidebar encolhe: ele só é cortado */
+body .sidebar > * {
+    min-width: 200px;
+}
+
+body .sidebar_nav a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* "Sair" sempre no fim do menu, colado no card do usuário */
+body .menu-sair {
+    margin-top: auto;
+}
+
+/* ===== BARRINHA DE ARRASTAR ===== */
+.sidebar-resizer {
+    position: fixed;
+    top: 0;
+    left: max(calc(var(--sidebar-w) - 3px), 0px);
+    width: 6px;
+    height: 100vh;
+    height: 100dvh;
+    cursor: col-resize;
+    touch-action: none;
+    z-index: 102;
+    transition: left var(--anim);
+}
+
+/* pegador visível no meio da barra, para dar para achar mesmo recolhida */
+.sidebar-resizer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    width: 3px;
+    height: 44px;
+    margin-top: -22px;
+    border-radius: 3px;
+    background: rgba(120, 135, 165, 0.55);
+}
+
+.sidebar-resizer:hover,
+body.arrastando .sidebar-resizer {
+    background: rgba(198, 201, 202, 0.45);
+}
+
+/* enquanto arrasta, tudo acompanha o mouse sem atraso */
+body.arrastando {
+    cursor: col-resize;
+    user-select: none;
+}
+
+body.arrastando,
+body.arrastando .sidebar,
+body.arrastando .sidebar-resizer,
+body.arrastando .perfil-panel,
+body.arrastando .continuar-panel,
+body.arrastando #formChat {
+    transition: none !important;
+}
+
+/* ===== SUB-MENUS (painéis) COLADOS NA SIDEBAR ===== */
+body .perfil-panel,
+body .continuar-panel {
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: var(--painel-largura);
+    left: calc(var(--sidebar-w) - 340px);
+    z-index: 99;
+    transition: left var(--anim);
+}
+
+body .perfil-panel.open,
+body .continuar-panel.open {
+    left: var(--sidebar-w);
+}
+
+/* ===== BARRA DE MENSAGEM RESPONSIVA ===== */
+body #formChat {
+    position: fixed;
+    top: auto;
+    left: var(--chat-esq);
+    right: 0;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    width: min(760px, calc(100vw - var(--chat-esq) - 32px));
+    margin: 0 auto;
+    transform: none;
+    z-index: 50;
+    transition: left var(--anim), width var(--anim);
+}
+
+/* ===== MENSAGENS ===== */
+body #mensagens {
+    width: min(760px, calc(100vw - var(--chat-esq) - 32px));
+    min-width: 0;
+    margin: 0 auto;
+    padding: 24px 0 130px;
+    transition: width var(--anim);
+}
+
+body .main-content {
+    min-width: 0;
+}
+
+/* ===== TÍTULO RESPONSIVO (igual à barra de mensagem) ===== */
+body .main-content h1 {
+    position: fixed;
+    inset: auto;
+    top: 50%;
+    left: var(--chat-esq);
+    right: 0;
+    bottom: auto;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0 16px;
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+    z-index: 1;
+    transition: left var(--anim);
+}
+
+/* quando já existem mensagens, o título sai de cena */
+body .main-content:has(#mensagens > *) h1 {
+    display: none;
+}
+
+/* enquanto arrasta a sidebar, o título acompanha sem atraso */
+body.arrastando .main-content h1 {
+    transition: none !important;
+}

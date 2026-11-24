@@ -41,10 +41,24 @@ body.escuro #enviarBtn {
 }
 
 /* ===== BALÕES DO CHAT ===== */
-body.escuro .usuario,
-body.escuro .ia {
-    background: #1e2638;
-    color: #e5e9f0;
+/* ===== MENSAGENS NO MODO ESCURO (TEXTO BRANCO, SEM BALÕES) ===== */
+body.escuro #mensagens .usuario {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #ffffff;
+    background-color: #6b7a99;
+    padding: 10px 14px;
+    border-radius: 16px 16px 16px 16px;
+}
+
+body.escuro #mensagens .ia {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 4px 0;
+    box-shadow: none;
+    color: #ffffff;
 }
 
 /* ===== SIDEBAR ===== */
